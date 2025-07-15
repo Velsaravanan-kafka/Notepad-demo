@@ -21,7 +21,7 @@ export default function App() {
   const [currentScreen, setCurrentScreen] = useState('list');
   const [selectedNote, setSelectedNote] = useState(null);
 
-  const API_URL = 'http://10.239.124.212:3000/notes';
+  const API_URL = 'https://notepad-api-sl05.onrender.com/notes'; 
 
   useEffect(() => {
     fetchNotes();
