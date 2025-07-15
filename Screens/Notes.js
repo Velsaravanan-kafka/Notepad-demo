@@ -1,5 +1,4 @@
-
- import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
   StyleSheet,
   Text,
@@ -55,10 +54,10 @@ export default function App() {
   const fetchNotes = async () => {
     try {
       const res = await axios.get(API_URL);
-      console.log('API Response Data:', res.data); // Keep this to verify fetched notes have _id
+      // console.log('API Response Data:', res.data); // Keep this to verify fetched notes have _id
       setNotes(res.data);
     } catch (err) {
-      console.error('Error fetching notes:', err);
+      // console.error('Error fetching notes:', err);
     }
   };
 
@@ -67,17 +66,17 @@ export default function App() {
 
     if (!trimmedContent) {
       // DEBUG LOG FOR CLEARING CONTENT
-      console.log('Attempting to delete note by clearing content.');
-      console.log('selectedNote at this point:', selectedNote);
-      console.log('selectedNote._id at this point:', selectedNote ? selectedNote._id : 'N/A');
+      // console.log('Attempting to delete note by clearing content.');
+      // console.log('selectedNote at this point:', selectedNote);
+      // console.log('selectedNote._id at this point:', selectedNote ? selectedNote._id : 'N/A');
 
       // The condition needs to be just selectedNote && selectedNote._id
       // because _id is an object, not an empty string.
       if (selectedNote && selectedNote._id) { // Changed condition back to just checking for existence
-        console.log('Calling handleDeleteNote from handleSaveNote (empty content) for ID:', selectedNote._id); // New debug log
+        // console.log('Calling handleDeleteNote from handleSaveNote (empty content) for ID:', selectedNote._id); // New debug log
         handleDeleteNote(selectedNote._id);
       } else {
-        console.log("Navigating back from empty note (no delete)"); // Changed log message for clarity
+        // console.log("Navigating back from empty note (no delete)"); // Changed log message for clarity
         setTimeout(() => {
           setSelectedNote(null);
           setCurrentScreen('list');
@@ -104,7 +103,7 @@ export default function App() {
             setNotes(prev => [res.data, ...prev]);
         }
     } catch (err) {
-        console.error('Error saving note:', err);
+        // console.error('Error saving note:', err);
     }
 
     setSelectedNote(null);
@@ -112,21 +111,21 @@ export default function App() {
   }, [selectedNote]);
 
   const handleDeleteNote = useCallback((idToDelete) => {
-    console.log('--> handleDeleteNote EXECUTED. ID to delete:', idToDelete); // <-- CRITICAL LOG
+    // console.log('--> handleDeleteNote EXECUTED. ID to delete:', idToDelete); // <-- CRITICAL LOG
     Alert.alert('Delete Note', 'Are you sure you want to delete this note?', [
       { text: 'Cancel', style: 'cancel' },
       {
         text: 'Delete',
         style: 'destructive',
         onPress: async () => {
-          console.log('--> Alert confirmed. Proceeding with deletion for ID:', idToDelete); // <-- CRITICAL LOG
+          // console.log('--> Alert confirmed. Proceeding with deletion for ID:', idToDelete); // <-- CRITICAL LOG
           try {
             await axios.delete(`${API_URL}/${idToDelete}`);
             setNotes(prev => prev.filter(note => note._id !== idToDelete));
             setSelectedNote(null);
             setCurrentScreen('list');
           } catch (err) {
-            console.error('Error deleting note:', err);
+            // console.error('Error deleting note:', err);
           }
         },
       },
@@ -147,7 +146,7 @@ export default function App() {
       <TouchableOpacity
         style={styles.noteItem}
         onPress={() => {
-          console.log('NoteItem pressed. Setting selectedNote to:', note); // Verify what's set
+          // console.log('NoteItem pressed. Setting selectedNote to:', note); // Verify what's set
           setSelectedNote(note);
           setCurrentScreen('detail');
         }}
@@ -207,8 +206,8 @@ export default function App() {
       textInputRef.current?.focus();
     }, [selectedNote]);
 
-    console.log('NoteDetailScreen rendered. selectedNote:', selectedNote); // Verify selectedNote here
-    console.log('NoteDetailScreen rendered. selectedNote._id:', selectedNote ? selectedNote._id : 'N/A');
+    // console.log('NoteDetailScreen rendered. selectedNote:', selectedNote); // Verify selectedNote here
+    // console.log('NoteDetailScreen rendered. selectedNote._id:', selectedNote ? selectedNote._id : 'N/A');
 
     return (
       <SafeAreaView style={styles.detailContainer}>
@@ -221,7 +220,7 @@ export default function App() {
             <TouchableOpacity
               style={styles.detailButton}
               onPress={() => {
-                console.log("handlesaved triggered"); // Keep your console.log here
+                // console.log("handlesaved triggered"); // Keep your console.log here
                 handleSaveNote(noteContent);
               }}
             >
@@ -232,7 +231,7 @@ export default function App() {
               <TouchableOpacity
                 style={[styles.detailButton, styles.deleteButton]}
                 onPress={() => {
-                  console.log('Calling handleDeleteNote from explicit button for ID:', selectedNote._id); // New debug log
+                  // console.log('Calling handleDeleteNote from explicit button for ID:', selectedNote._id); // New debug log
                   handleDeleteNote(selectedNote._id);
                 }}
               >
