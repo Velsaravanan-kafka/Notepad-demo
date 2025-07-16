@@ -7,7 +7,7 @@
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/splash-icon.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -28,6 +28,11 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "owner": "vel_saravanan"
+    "owner": "vel_saravanan",
+    "extra": {
+      "eas": {
+        "projectId": "52b04794-73f6-4052-96c1-6344a5f4f861"
+      }
+    }
   }
 }
