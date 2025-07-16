@@ -23,14 +23,14 @@
         "backgroundColor": "#ffffff"
       },
       "package": "com.vel_saravanan.Basic",
-      "ndkVersion": "26.1.10909125" 
+      "ndkVersion": "26.1.10909125"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "extra": {
       "eas": {
-        
+        "projectId": "55451ac4-b98c-480b-abca-349499be6803"
       }
     }
   }
