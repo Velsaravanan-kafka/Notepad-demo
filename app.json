@@ -30,8 +30,9 @@
     },
     "extra": {
       "eas": {
-
+        "projectId": "55451ac4-b98c-480b-abca-349499be6803"
       }
-    }
+    },
+    "owner": "vel_saravanan"
   }
 }
